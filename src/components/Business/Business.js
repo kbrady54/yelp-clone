@@ -25,7 +25,7 @@ class Business extends React.Component {
               {this.props.business.city}
               {", "} {this.props.business.state} {this.props.business.zipCode}
             </p>
-            <p>{this.props.business.phone}</p>
+            <p>{this.formatPhoneNumber(this.props.business.phone)}</p>
           </div>
           <div className="Business-reviews">
             <h3>{this.props.business.category}</h3>

@@ -2,6 +2,15 @@ import React from "react";
 import "./Business.css";
 
 class Business extends React.Component {
+  formatPhoneNumber(phoneNumberString) {
+    var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return ["(", match[2], ") ", match[3], "-", match[4]].join("");
+    }
+    return null;
+  }
+
   render() {
     return (
       <div className="Business">
@@ -12,10 +21,11 @@ class Business extends React.Component {
         <div className="Business-information">
           <div className="Business-address">
             <p>{this.props.business.address}</p>
-            <p>{this.props.business.city}</p>
             <p>
-              {this.props.business.state} {this.props.business.zipCode}
+              {this.props.business.city}
+              {", "} {this.props.business.state} {this.props.business.zipCode}
             </p>
+            <p>{this.formatPhoneNumber(this.props.business.phone)}</p>
           </div>
           <div className="Business-reviews">
             <h3>{this.props.business.category}</h3>
